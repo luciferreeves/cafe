@@ -2,8 +2,10 @@ package main
 
 import (
 	"cafe/config"
+	"cafe/processors"
 	"cafe/router"
 	"cafe/tags"
+	"cafe/utils/env"
 	"fmt"
 	"log"
 
@@ -16,6 +18,10 @@ import (
 )
 
 func main() {
+	if config.Server.AppSecret == env.Defaults(&config.Server).AppSecret {
+		log.Println("Warning: AppSecret is set to a default value which is not secure. Please set a strong random secret in your APP_SECRET environment variable or .env file.")
+	}
+
 	tags.Initialize()
 	engine := django.New("./templates", ".django")
 	engine.Reload(config.Server.DevMode)
@@ -32,6 +38,7 @@ func main() {
 	}))
 	app.Use(cors.New())
 
+	processors.Initialize(app)
 	router.Initialize(app)
 
 	address := fmt.Sprintf("%s:%d", config.Server.Host, config.Server.Port)

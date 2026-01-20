@@ -11,3 +11,18 @@ const (
 	OPTIONS HTTPMethod = "OPTIONS"
 	HEAD    HTTPMethod = "HEAD"
 )
+
+type HTTPQueryParam struct {
+	Key   string
+	Value string
+}
+
+type HTTPRequest struct {
+	Path        string
+	Method      string
+	Query       []HTTPQueryParam
+	Params      []HTTPQueryParam
+	QueryString string
+	IP          string
+	URL         string
+}
