@@ -10,6 +10,7 @@ import (
 var (
 	Server   server
 	Database database
+	Session  session
 )
 
 func init() {
@@ -23,5 +24,9 @@ func init() {
 
 	if err := env.Parse(&Database); err != nil {
 		log.Fatalf("Failed to parse DatabaseConfig: %v", err)
+	}
+
+	if err := env.Parse(&Session); err != nil {
+		log.Fatalf("Failed to parse SessionConfig: %v", err)
 	}
 }

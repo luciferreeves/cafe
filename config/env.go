@@ -1,5 +1,7 @@
 package config
 
+import "time"
+
 type server struct {
 	Host           string `env:"SERVER_HOST" default:"localhost"`
 	Port           int    `env:"SERVER_PORT" default:"8080"`
@@ -16,4 +18,13 @@ type database struct {
 	Password string `env:"DB_PASS" default:""`
 	Name     string `env:"DB_NAME" default:"cafe"`
 	SSLMode  string `env:"DB_SSLMODE" default:"disable"`
+}
+
+type session struct {
+	CookieDomain   string        `env:"SESSION_COOKIE_DOMAIN" default:"localhost"`
+	CookieName     string        `env:"SESSION_COOKIE_NAME" default:"cafe_session"`
+	CookiePath     string        `env:"SESSION_COOKIE_PATH" default:"/"`
+	CookieSameSite string        `env:"SESSION_COOKIE_SAME_SITE" default:"Lax"`
+	CookieSecure   bool          `env:"SESSION_SECURE_COOKIE" default:"false"`
+	CookieTimeout  time.Duration `env:"SESSION_TIMEOUT" default:"24h"`
 }
