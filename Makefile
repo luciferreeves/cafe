@@ -2,13 +2,16 @@ BINARY_NAME=cafe
 BUILD_PATH=bin/$(BINARY_NAME)
 MAIN_PATH=$(BINARY_NAME)/main.go
 COMPOSE_DEV=toolchain/docker-compose.dev.yml
+TAILWIND=toolchain/tailwind
 
-.PHONY: setup clean tidy build run dev test postgres stop reset all
+.PHONY: setup clean tidy build run dev test postgres stop reset css watch all
 
 setup:
 	@echo "Setting up environment..."
 	@go mod download
 	@go mod tidy
+	@./scripts/tailwind.setup.sh
+	@./scripts/htmx.setup.sh
 	@echo "Environment setup complete."
 
 clean:
@@ -32,7 +35,7 @@ run:
 	@echo "Running..."
 	@$(BUILD_PATH) || true
 
-dev:
+dev: css
 	@echo "Running in development mode..."
 	@go run $(MAIN_PATH) || true
 
@@ -51,6 +54,16 @@ stop:
 reset:
 	@echo "Resetting database..."
 	@./scripts/reset.db.sh
+
+css:
+	@if [ ! -f $(TAILWIND) ]; then echo "Tailwind not found. Installing..."; ./scripts/install.tailwind.sh; fi
+	@echo "Building CSS..."
+	@$(TAILWIND) -i static/css/tailwind.css -o static/css/style.css --minify
+
+watch:
+	@if [ ! -f $(TAILWIND) ]; then echo "Tailwind not found. Installing..."; ./scripts/install.tailwind.sh; fi
+	@echo "Watching CSS..."
+	@$(TAILWIND) -i static/css/tailwind.css -o static/css/style.css --watch
 
 all: setup clean build run
 

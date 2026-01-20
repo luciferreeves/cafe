@@ -42,3 +42,8 @@ logs/
 *.db
 *.sqlite
 *.sqlite3
+
+# Tailwind CSS output
+static/css/style.css
+tailwindcss-*
+toolchain/tailwind/

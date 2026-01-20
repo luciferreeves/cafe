@@ -3,6 +3,7 @@ package main
 import (
 	"cafe/config"
 	"cafe/router"
+	"cafe/tags"
 	"fmt"
 	"log"
 
@@ -11,10 +12,16 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/helmet"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/gofiber/template/django/v3"
 )
 
 func main() {
+	tags.Initialize()
+	engine := django.New("./templates", ".django")
+	engine.Reload(config.Server.DevMode)
+
 	app := fiber.New(fiber.Config{
+		Views:        engine,
 		ErrorHandler: router.ErrorHandler,
 	})
 
