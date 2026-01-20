@@ -1,8 +1,9 @@
 BINARY_NAME=cafe
 BUILD_PATH=bin/$(BINARY_NAME)
 MAIN_PATH=$(BINARY_NAME)/main.go
+COMPOSE_DEV=toolchain/docker-compose.dev.yml
 
-.PHONY: setup clean tidy build run dev test all
+.PHONY: setup clean tidy build run dev test postgres stop reset all
 
 setup:
 	@echo "Setting up environment..."
@@ -38,6 +39,18 @@ dev:
 test:
 	@echo "Running tests..."
 	@go test -v ./... || true
+
+postgres:
+	@echo "Starting database..."
+	@docker-compose -f $(COMPOSE_DEV) up -d
+
+stop:
+	@echo "Stopping database..."
+	@docker-compose -f $(COMPOSE_DEV) down
+
+reset:
+	@echo "Resetting database..."
+	@./scripts/reset.db.sh
 
 all: setup clean build run
 

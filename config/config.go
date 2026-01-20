@@ -8,7 +8,8 @@ import (
 )
 
 var (
-	Server server
+	Server   server
+	Database database
 )
 
 func init() {
@@ -18,5 +19,9 @@ func init() {
 
 	if err := env.Parse(&Server); err != nil {
 		log.Fatalf("Failed to parse ServerConfig: %v", err)
+	}
+
+	if err := env.Parse(&Database); err != nil {
+		log.Fatalf("Failed to parse DatabaseConfig: %v", err)
 	}
 }
