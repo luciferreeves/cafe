@@ -46,4 +46,4 @@ logs/
 # Tailwind CSS output
 static/css/style.css
 tailwindcss-*
-toolchain/tailwind/
+toolchain/tailwind
