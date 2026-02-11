@@ -132,5 +132,5 @@ func Logout(ctx *fiber.Ctx) error {
 		log.Printf("Failed to destroy session: %v", err)
 	}
 
-	return shortcuts.Redirect(ctx, "mainHall")
+	return shortcuts.Render(ctx, "auth/logout", nil)
 }

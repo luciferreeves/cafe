@@ -1,0 +1,5 @@
+{% extends "layouts/base.django" %}
+
+{% block content %}
+You have been logged out. However, if you are still logged in to <a href="https://my.thatcomputerscientist.com"> Shifoo's Dungeon</a>, you may be automatically logged back in when you visit home page again.
+{% endblock content %}
