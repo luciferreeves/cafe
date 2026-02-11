@@ -2,29 +2,31 @@
 
 {% block content %}
 <div class="flex h-screen">
-    {% if User %}
-    <span class="text-gray-300">👋 {{ User.Username }}</span>
-    <a href="{% url "auth.logout" %}" 
-        class="text-sm bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded transition-colors">
+    {% include "partials/iconbar.partial.django" %}
+
+
+    {% comment %} {% if User %}
+    <span>👋 {{ User.Username }}</span>
+    <a href="{% url "auth.logout" %}" >
         Logout
     </a>
     {% endif %}
             
-    <h2 class="text-2xl font-bold mb-4 text-white">Welcome to Shifoo's Cafe! ☕</h2>
-    <p class="text-gray-400 mb-4">
+    <h2 >Welcome to Shifoo's Cafe! ☕</h2>
+    <p >
         You're now authenticated. This is where the main application will be built.
     </p>
                     
     {% if User %}
-    <div class="mt-6 p-4 bg-[#0f3460]/50 rounded border border-[#0f3460]">
-        <h3 class="text-lg font-semibold text-white mb-2">Your User Info:</h3>
-        <ul class="text-gray-300 space-y-1">
+    <div >
+        <h3 >Your User Info:</h3>
+        <ul >
             <li><strong>Username:</strong> {{ User.Username }}</li>
             <li><strong>Email:</strong> {{ User.Email }}</li>
             <li><strong>Display Name:</strong> {{ User.DisplayName }}</li>
             <li><strong>Admin:</strong> {% if User.IsAdmin %}Yes ⭐{% else %}No{% endif %}</li>
         </ul>
     </div>
-    {% endif %}
+    {% endif %} {% endcomment %}
 </div>
 {% endblock %}

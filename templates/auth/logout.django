@@ -1,5 +1,33 @@
 {% extends "layouts/base.django" %}
 
 {% block content %}
-You have been logged out. However, if you are still logged in to <a href="https://my.thatcomputerscientist.com"> Shifoo's Dungeon</a>, you may be automatically logged back in when you visit home page again.
+<div class="flex flex-1 items-center justify-center min-h-screen bg-gradient-to-br from-[#0a0a0f] via-[#1a1a2e] to-[#0a0a0f]">
+    <div class="max-w-md w-full mx-4">
+        <div class="bg-[#16213e] rounded-lg shadow-2xl p-8 border border-[#0f3460]">
+            <!-- Logo/Icon Area -->
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-2">
+                    ☕ Shifoo's Cafe
+                </h1>
+                <p class="text-gray-400 text-sm">A cozy place for close friends</p>
+            </div>
+
+            <!-- Logout Message -->
+            <div class="mb-6 text-center">
+                <h2 class="text-xl font-semibold text-white mb-2">Logged Out</h2>
+                <p class="text-gray-400 text-sm">
+                    You have been logged out. If you are still logged in to <a href="https://my.thatcomputerscientist.com" class="text-purple-400 hover:underline">Shifoo's Dungeon</a>, you may be automatically logged back in when you visit the <a href="{% url "mainHall" %}" class="text-purple-400 hover:underline">main hall</a>.
+                </p>
+            </div>
+
+            <!-- Footer Info -->
+            <div class="mt-6 text-center text-xs text-gray-500">
+                <p>See you next time! 👋</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% comment %} You have been logged out. However, if you are still logged in to <a href="https://my.thatcomputerscientist.com"> Shifoo's Dungeon</a>, you may be automatically logged back in when you visit the <a href="{% url "mainHall" %}">main hall</a>. {% endcomment %}
 {% endblock content %}
