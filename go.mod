@@ -3,17 +3,20 @@ module cafe
 go 1.25.5
 
 require (
+	github.com/coreos/go-oidc/v3 v3.17.0
 	github.com/flosch/pongo2/v6 v6.0.0
 	github.com/gofiber/fiber/v2 v2.52.10
 	github.com/gofiber/storage/postgres/v3 v3.3.1
 	github.com/gofiber/template/django/v3 v3.1.14
 	github.com/joho/godotenv v1.5.1
+	golang.org/x/oauth2 v0.35.0
 	gorm.io/driver/postgres v1.6.0
 	gorm.io/gorm v1.31.1
 )
 
 require (
 	github.com/andybalholm/brotli v1.1.0 // indirect
+	github.com/go-jose/go-jose/v4 v4.1.3 // indirect
 	github.com/gofiber/template v1.8.3 // indirect
 	github.com/gofiber/utils v1.1.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect

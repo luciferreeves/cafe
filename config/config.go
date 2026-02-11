@@ -11,6 +11,7 @@ var (
 	Server   server
 	Database database
 	Session  session
+	OpenID   openid
 )
 
 func init() {
@@ -28,5 +29,9 @@ func init() {
 
 	if err := env.Parse(&Session); err != nil {
 		log.Fatalf("Failed to parse SessionConfig: %v", err)
+	}
+
+	if err := env.Parse(&OpenID); err != nil {
+		log.Fatalf("Failed to parse OpenIDConfig: %v", err)
 	}
 }

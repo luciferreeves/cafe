@@ -20,7 +20,7 @@ func IsAuthenticated(context *fiber.Ctx) bool {
 func RequireAuthentication(handler fiber.Handler) fiber.Handler {
 	return func(context *fiber.Ctx) error {
 		if !IsAuthenticated(context) {
-			return shortcuts.Redirect(context, "auth.authenticate")
+			return shortcuts.Redirect(context, "auth.login")
 		}
 		return handler(context)
 	}

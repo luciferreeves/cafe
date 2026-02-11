@@ -3,13 +3,19 @@ package config
 import "time"
 
 type server struct {
-	Host               string `env:"SERVER_HOST" default:"localhost"`
-	Port               int    `env:"SERVER_PORT" default:"8080"`
-	AppSecret          string `env:"APP_SECRET" default:"mysecret"`
-	AppName            string `env:"APP_NAME" default:"Shifoo's Cafe"`
-	AppDescription     string `env:"APP_DESCRIPTION" default:"A cozy place for close friends"`
-	OpenIDDiscoveryURL string `env:"OPENID_DISCOVERY_URL" default:""`
-	DevMode            bool   `env:"DEV_MODE" default:"true"`
+	Host           string `env:"SERVER_HOST" default:"localhost"`
+	Port           int    `env:"SERVER_PORT" default:"8080"`
+	AppSecret      string `env:"APP_SECRET" default:"mysecret"`
+	AppName        string `env:"APP_NAME" default:"Shifoo's Cafe"`
+	AppDescription string `env:"APP_DESCRIPTION" default:"A cozy place for close friends"`
+	DevMode        bool   `env:"DEV_MODE" default:"true"`
+}
+
+type openid struct {
+	DiscoveryURL string `env:"OPENID_DISCOVERY_URL" default:""`
+	ClientID     string `env:"OPENID_CLIENT_ID" default:""`
+	ClientSecret string `env:"OPENID_CLIENT_SECRET" default:""`
+	CallbackURL  string `env:"OPENID_CALLBACK_URL" default:"http://localhost:8080/auth/callback"`
 }
 
 type database struct {

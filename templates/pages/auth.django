@@ -1,5 +1,0 @@
-{% extends "layouts/base.django" %}
-
-{% block content %}
-You will be authenticated here.
-{% endblock %}
