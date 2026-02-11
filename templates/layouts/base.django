@@ -3,17 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}Shifoo's Cafe{% endblock %}</title>
+    <meta name="theme-color" content="#1e1e2e" />
+    <title>{% block title %}{{ Title }}{% endblock %}</title>
+    
+    <link rel="manifest" href="/static/manifest.json" />
     <link rel="stylesheet" href="{% static "css/style.css" %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     {% block head %}{% endblock %}
   </head>
-  <body>
-    {% block body %}
-      <main>
-        {% block content %}{% endblock %}
-      </main>
-    {% endblock %}
+  <body class="bg-[#0a0a0f] text-[#e4e4e7] font-['Inter']">
+    <div class="flex h-screen overflow-hidden">
+      {% block content %}{% endblock %}
+    </div>
+    
     <script src="{% static "js/htmx.min.js" %}"></script>
+    <script src="{% static "js/app.js" %}"></script>
     {% block scripts %}{% endblock %}
   </body>
 </html>

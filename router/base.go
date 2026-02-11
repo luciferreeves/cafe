@@ -12,6 +12,6 @@ func init() {
 	urls.SetNamespace("")
 
 	urls.Path(types.GET, "/", func(c *fiber.Ctx) error {
-		return shortcuts.Render(c, "pages/home", nil)
+		return shortcuts.Render(c, "pages/main", fiber.Map{})
 	}, "home")
 }

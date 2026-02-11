@@ -1,0 +1,5 @@
+{% extends "layouts/base.django" %}
+
+{% block content %}
+This will be cafe.
+{% endblock %}
