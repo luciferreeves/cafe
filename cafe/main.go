@@ -2,6 +2,7 @@ package main
 
 import (
 	"cafe/config"
+	"cafe/middleware"
 	"cafe/processors"
 	"cafe/router"
 	"cafe/tags"
@@ -27,8 +28,9 @@ func main() {
 	engine.Reload(config.Server.DevMode)
 
 	app := fiber.New(fiber.Config{
-		Views:        engine,
-		ErrorHandler: router.ErrorHandler,
+		Views:                 engine,
+		ErrorHandler:          router.ErrorHandler,
+		DisableStartupMessage: true,
 	})
 
 	app.Use(logger.New())
@@ -40,6 +42,7 @@ func main() {
 
 	processors.Initialize(app)
 	router.Initialize(app)
+	middleware.Initialize(app)
 
 	address := fmt.Sprintf("%s:%d", config.Server.Host, config.Server.Port)
 	log.Printf("Starting server at %s\n", address)

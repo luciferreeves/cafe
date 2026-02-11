@@ -1,17 +1,14 @@
 package router
 
 import (
+	"cafe/controllers"
 	"cafe/types"
-	"cafe/utils/shortcuts"
+	"cafe/utils/auth"
 	"cafe/utils/urls"
-
-	"github.com/gofiber/fiber/v2"
 )
 
 func init() {
 	urls.SetNamespace("")
 
-	urls.Path(types.GET, "/", func(c *fiber.Ctx) error {
-		return shortcuts.Render(c, "pages/main", fiber.Map{})
-	}, "home")
+	urls.Path(types.GET, "/", auth.RequireAuthentication(controllers.MainHall), "mainHall")
 }
